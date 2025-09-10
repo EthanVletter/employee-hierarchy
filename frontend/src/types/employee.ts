@@ -1,3 +1,4 @@
+// types/employee.ts
 export interface EmployeeRow {
   id: number;
   first_name: string;
@@ -9,3 +10,5 @@ export interface EmployeeRow {
   email?: string | null;
   manager_id?: number | null;
 }
+
+export type NewEmployee = Omit<EmployeeRow, "id">;

@@ -25,7 +25,7 @@ services:
     # volumes:
     #   - ./backend:/usr/src/app
     ports:
-      - "${BACKEND_PORT}:3000"
+      - "4000:4000"
 
   frontend:
     build: ./frontend

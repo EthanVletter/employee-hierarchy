@@ -1,14 +1,13 @@
-import react, { use, useEffect, useState } from "react";
-import { fetchEmployees } from "../api/employeeApi";
+import React from "react";
+import type { EmployeeRow as Employee } from "../types/employee";
 
-export const OrgChart: React.FC = () => {
-  const [employees, setEmployees] = useState<any[]>([]);
-  useEffect(() => {
-    fetchEmployees().then(setEmployees);
-  }, []);
+interface Props {
+  employees: Employee[];
+}
 
+export const OrgChart: React.FC<Props> = ({ employees }) => {
   // Build a map of manager -> direct reports
-  const map = new Map<number | null, any[]>();
+  const map = new Map<number | null, Employee[]>();
   employees.forEach((e) => {
     const key = e.manager_id ?? null;
     if (!map.has(key)) map.set(key, []);
@@ -20,7 +19,7 @@ export const OrgChart: React.FC = () => {
     const nodes = map.get(managerId) || [];
     return (
       <ul style={{ paddingLeft: depth ? 20 : 0 }}>
-        {nodes.map((n: any) => (
+        {nodes.map((n) => (
           <li key={n.id}>
             <strong>
               {n.first_name} {n.last_name}

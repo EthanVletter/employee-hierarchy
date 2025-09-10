@@ -22,7 +22,7 @@ employeeRoutes.get("/:id", async (req, res) => {
     const id = Number(req.params.id);
     const e = await service.getEmployeeById(id);
     if (!e) {
-      return res.status(404).json({ erro: "Not found" });
+      return res.status(404).json({ error: "Not found" });
     }
     res.json({ ...e, avatar: gravatarUrl(e.email ?? undefined) });
   } catch (err) {
@@ -33,7 +33,9 @@ employeeRoutes.get("/:id", async (req, res) => {
 employeeRoutes.post("/", async (req, res) => {
   try {
     const created = await service.createEmployee(req.body);
-    res.status(201).json({ ...created, avatar: created.email ?? undefined });
+    res
+      .status(201)
+      .json({ ...created, avatar: gravatarUrl(created.email ?? undefined) });
   } catch (err: any) {
     res.status(400).json({ error: err.message ?? String(err) });
   }
