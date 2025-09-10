@@ -4,10 +4,11 @@ const { Pool } = pkg;
 import dotenv from "dotenv";
 dotenv.config();
 
+// db/pool.ts or wherever you configure pg pool
 export const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  user: process.env.DB_USER || "postgres",
+  password: process.env.DB_PASSWORD || "postgres",
+  host: process.env.DB_HOST || "employee-hierarchy-db", // use service name
+  database: process.env.DB_NAME || "employee_hierarchy",
   port: Number(process.env.DB_PORT || 5432),
 });

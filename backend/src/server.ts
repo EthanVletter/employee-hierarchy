@@ -9,7 +9,12 @@ import path from "path";
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: "http://localhost: 5173" }));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(express.json());
 
 // Run init.sql on startup
