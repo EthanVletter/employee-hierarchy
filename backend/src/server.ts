@@ -12,10 +12,29 @@ const app = express();
 
 // console.log("process.env.FRONTEND_URL: ", process.env.FRONTEND_URL);
 
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "http://localhost:4173", // local dev
+  process.env.FRONTEND_URL, // production frontend
+];
+
 // Allow CORS (adjust depending on frontend deploy URL)
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true); // allow non-browser requests like Postman
+
+      // allow if in allowedOrigins OR if it contains Render preview domain
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".onrender.com") // any Render URL, including previews
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS policy does not allow access from ${origin}`));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

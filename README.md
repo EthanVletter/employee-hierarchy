@@ -2,6 +2,8 @@
 
 This project is a cloud-hosted web application for managing an organisation’s employee hierarchy, developed as part of the EPI-USE Africa Technical Assessment.
 
+**Live Demo:** [Employee Hierarchy App](https://employee-hierarchy-frontend-s4e3.onrender.com) 🚀
+
 **Features include:**
 
 - Full CRUD operations for employee records (Create, Read, Update, Delete)
