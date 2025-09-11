@@ -21,22 +21,24 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1 style={{ fontSize: 28 }}>Employee Hierarchy Manager</h1>
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        Employee Hierarchy Manager
+      </h1>
 
-      <div style={{ display: "flex", gap: 20 }}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Table receives employees as a prop */}
-        <div style={{ flex: 1 }}>
+        <div className="bg-white rounded-2xl shadow p-4">
           <EmployeeTable employees={employees} />
         </div>
 
         {/* OrgChart receives the same employees as a prop */}
-        <div style={{ flex: 1 }}>
+        <div className="bg-white rounded-2xl shadow p-4">
           <OrgChart employees={employees} />
         </div>
 
         {/* Form can add new employees */}
-        <div style={{ flex: 1 }}>
+        <div className="bg-white rounded-2xl shadow p-4">
           <EmployeeForm onEmployeeCreated={handleEmployeeCreated} />
         </div>
       </div>
