@@ -16,11 +16,24 @@ git clone https://github.com/EthanVletter/employee-hierarchy.git cd
 employee-hierarchy
 ```
 
-### 2. Copy `.env.example` to `.env` and update teh environment variables
+### 2. Copy `.env.example` to `.env` and update the environment variables
 
-(database credentials, API URLs)
+- Database credentials
 
-### 3. Start the project with Docker Compose
+- Backend & frontend ports
+
+- API URLs
+
+You can do this by using this simple terminal command
+
+```bash
+cp .env.example .env
+
+```
+
+### 3. Option A: Start the project with Docker Compose
+
+_Note: Make sure PostgreSQL is NOT running locally and `.env` has `DB_HOST=employee-hierarchy-db`._
 
 (simple run command)
 
@@ -36,7 +49,7 @@ or
 docker compose up --build -d
 ```
 
-### 4. The frontend should be available at :
+The frontend will be available at :
 
 ```bash
 http://localhost:5173
@@ -48,7 +61,7 @@ and the backend API at:
 http://localhost:4000
 ```
 
-### 5. Stop the project with Docker Compose
+Stop the project with Docker Compose
 
 (stop the simple startup command)
 
@@ -64,8 +77,42 @@ or
 docker compose down
 ```
 
-### 6. Alternatively you can remove docker volumes using:
+Remove docker volumes (if needed) using:
 
 ```bash
 docker compose down -v
+```
+
+### 4, Option B: Run frontend and backend separately (without Docker)
+
+Frontend
+
+```bash
+cd frontend
+npm install
+npm run build
+npm run dev
+```
+
+The frontend will be available at :
+
+```bash
+http://localhost:5173
+```
+
+Backend
+
+_Note: Make sure PostgreSQL is running locally and `.env` has `DB_HOST=localhost`._
+
+```bash
+cd backend
+npm install
+npm run build
+npm run dev
+```
+
+The backend API will be available at:
+
+```bash
+http://localhost:4000
 ```
