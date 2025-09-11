@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 
-console.log("process.env.FRONTEND_URL: ", process.env.FRONTEND_URL);
+// console.log("process.env.FRONTEND_URL: ", process.env.FRONTEND_URL);
 
 // Allow CORS (adjust depending on frontend deploy URL)
 app.use(
